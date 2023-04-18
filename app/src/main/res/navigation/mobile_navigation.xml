@@ -22,4 +22,21 @@
         android:name="dam_a47471.pokedex.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_regions"
+        android:name="dam_a47471.pokedex.ui.region.RegionFragment"
+        android:label="@string/menu_regions"
+        tools:layout="@layout/fragment_region" >
+        <action
+            android:id="@+id/action_nav_regions_to_nav_pokemon"
+            app:destination="@id/nav_pokemon" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_pokemon"
+        android:name="dam_a47471.pokedex.ui.pokemon.PokemonsFragment"
+        android:label="@string/pokemons"
+        tools:layout="@layout/fragment_pokemons"/>
+
 </navigation>

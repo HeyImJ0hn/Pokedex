@@ -22,4 +22,21 @@
 
 
     <string name="menu_home">Home View</string>
+    <string name="menu_pokedex">Pokedex</string>
+
+    <string name="pokemons">Pokemons</string>
+
+    <!-- Pokemon Details String -->
+
+    <string name="title_weight">Weight</string>
+    <string name="title_height">Height</string>
+    <string name="title_category">Category</string>
+    <string name="title_ability">Ability</string>
+    <string name="title_evolutiions">Evolutions</string>
+    <string name="title_stats">Stats</string>
+    <string name="title_hp">Hp</string>
+    <string name="title_exp">Experience</string>
+    <string name="title_spd">Speed</string>
+    <string name="title_def">Defence</string>
+    <string name="title_atk">Attack</string>
 </resources>
