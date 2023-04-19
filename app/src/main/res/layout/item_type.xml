@@ -1,0 +1,34 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="type"
+            type="dam_a47471.pokedex.data.PokemonType" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/TypeCheckButton"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:checkable="true"
+            android:foregroundGravity="center_horizontal"
+            android:text="@{type.name}"
+            android:textColor="@color/white"
+            app:backgroundTint="@{type.color}"
+            app:icon="@{type.icon}"
+            app:iconSize="15dp"
+            app:iconTint="@color/white"
+            tools:backgroundTint="@color/poison"
+            tools:icon="@drawable/poison"
+            tools:text="poison" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

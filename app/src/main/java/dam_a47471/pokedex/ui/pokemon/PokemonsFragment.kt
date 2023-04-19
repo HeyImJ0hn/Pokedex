@@ -31,7 +31,12 @@ class PokemonsFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val region = checkNotNull(arguments?.getParcelable("region", PokemonRegion::class.java))
+        //val region = checkNotNull(arguments?.getParcelable("region", PokemonRegion::class.java))
+        val id = checkNotNull(arguments?.getInt("id"))
+        val name = checkNotNull(arguments?.getString("name"))
+        val bg = checkNotNull(arguments?.getInt("bg"))
+        val starters = checkNotNull(arguments?.getInt("starters"))
+        val region = PokemonRegion(id, name, bg, starters)
         viewModel.getListPokemonsByRegion(region).observe(viewLifecycleOwner, Observer {
             val pokemons: List<Pokemon> = it
             binding.pokemonsRecyclerView.adapter = PokemonsAdapter(pokemons, view.context)

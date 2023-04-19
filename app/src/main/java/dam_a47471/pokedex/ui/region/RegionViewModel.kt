@@ -1,4 +1,4 @@
-package dam_a47471.pokedex
+package dam_a47471.pokedex.ui.region
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

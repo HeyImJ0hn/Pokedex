@@ -58,11 +58,11 @@ object PokemonMockData {
             4,
             "charmander",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
-                    "/sprites/pokemon/other/official-artwork/1.png",
+                    "/sprites/pokemon/other/official-artwork/4.png",
             regions[0], pokemonTypeMock.take(2)
         ),
         Pokemon(
-            6,
+            7,
             "squirtle",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/7.png",

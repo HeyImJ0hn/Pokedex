@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black_95"
+    tools:context=".ui.regions.RegionsFragment">
+
+    <data>
+
+        <variable
+            name="pokemon"
+            type="dam_a47471.pokedex.data.Pokemon" />
+
+        <variable
+            name="pkDetail"
+            type="dam_a47471.pokedex.data.PokemonDetail" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="32dp"
+            android:descendantFocusability="blocksDescendants">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="6dp"
+                android:translationZ="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/header"
+                app:onBackPressed="@{true}"
+                app:srcCompat="@drawable/ic_arrow" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginStart="12dp"
+                android:text="@{Integer.toString(pokemon.id)}"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:translationZ="100dp"
+                app:layout_constraintEnd_toEndOf="@id/header"
+                app:layout_constraintTop_toTopOf="@id/header"
+                tools:text="#001" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/name"
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:text="@{pokemon.name}"
+                android:translationZ="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header"
+                tools:text="Bulbasaur" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:background="@color/bug"
+                android:elevation="9dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+                android:layout_marginBottom="20dp"
+                android:scaleType="center"
+                android:translationZ="100dp"
+                app:layout_constraintBottom_toBottomOf="@id/header"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:paletteImage="@{pokemon.imageUrl}"
+                app:paletteView="@{header}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/typeListView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="6dp"
+                    app:layoutManager="LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_type" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView"
+                style="@style/DescriptionStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="end"
+                android:minLines="1"
+                android:text="@{pkDetail.description}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                tools:text="Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Sed malesuada enim ac dapibus ornare.
+            Nam imperdiet, turpis eget hendrerit viverra, nulla
+            elit iaculis nibh, eget facilisis mi lorem at augue.
+            Sed quis consectetur lacus, aliquet laoreet nisl. In
+            quis sem tellus. Maecenas tincidunt viverra nisl, sed
+            porta nibh semper ac. Phasellus in lacus at eros
+            lacinia scelerisque sed vitae justo. Fusce mauris
+            tellus, euismod et ultrices id, maximus nec odio.
+            Maecenas ac venenatis sapien. Maecenas vitae vehicula
+            ligula. Nam ac malesuada turpis." />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BaseInfoTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_weight"
+                                android:drawableTint="@color/white"
+                                android:text="@string/title_weight" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BaseInfoStyle"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/pk_detail_general_text"
+                                android:text="@{Double.toString(pkDetail.weight)}"
+                                tools:text="12Kg" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BaseInfoTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_height"
+                                android:drawableTint="@color/white"
+                                android:text="@string/title_height" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BaseInfoStyle"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/pk_detail_general_text"
+                                android:text="@{Double.toString(pkDetail.height)}"
+                                tools:text="12Kg" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BaseInfoTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_category"
+                                android:drawableTint="@color/white"
+                                android:text="@string/title_category" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BaseInfoStyle"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/pk_detail_general_text"
+                                android:text="@{Double.toString(pkDetail.height)}"
+                                tools:text="12Kg" />
+                        </LinearLayout>
+
+                        <Space
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BaseInfoTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_ability"
+                                android:drawableTint="@color/white"
+                                android:text="@string/title_ability" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BaseInfoStyle"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/pk_detail_general_text"
+                                android:text="@{Double.toString(pkDetail.height)}"
+                                tools:text="12Kg" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/stats_title"
+                    style="@style/DetailTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_stats"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/hp"
+                    style="@style/DetailStatsStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/title_hp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/stats_title" />
+
+                <com.skydoves.progressview.ProgressView
+                    android:id="@+id/progress_hp"
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/hp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/hp"
+                    app:layout_constraintTop_toTopOf="@id/hp"
+                    app:progressView_colorBackground="@color/white"
+                    app:progressView_colorProgress="@color/bug"
+                    app:progressView_labelColorInner="@color/black"
+                    app:progressView_labelColorOuter="@color/black"
+                    app:progressView_labelSize="12sp"
+                    app:progressView_labelText="@{pkDetail.stats.hp}"
+                    app:progressView_max="@{pkDetail.stats.maxHp}"
+                    app:progressView_progress="@{pkDetail.stats.hp}"
+                    app:progressView_radius="12dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/attack"
+                    style="@style/DetailStatsStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/title_atk"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hp" />
+
+                <com.skydoves.progressview.ProgressView
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/attack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/progress_hp"
+                    app:layout_constraintTop_toTopOf="@id/attack"
+                    app:progressView_colorBackground="@color/white"
+                    app:progressView_colorProgress="@color/md_orange_100"
+                    app:progressView_labelColorInner="@color/black"
+                    app:progressView_labelColorOuter="@color/black"
+                    app:progressView_labelSize="12sp"
+                    app:progressView_labelText="@{pkDetail.stats.attack}"
+                    app:progressView_max="@{pkDetail.stats.maxAttack}"
+                    app:progressView_progress="@{pkDetail.stats.attack}"
+                    app:progressView_radius="12dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/defense"
+                    style="@style/DetailStatsStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/title_def"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/attack" />
+
+                <com.skydoves.progressview.ProgressView
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/defense"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/progress_hp"
+                    app:layout_constraintTop_toTopOf="@id/defense"
+                    app:progressView_colorBackground="@color/white"
+                    app:progressView_colorProgress="@color/md_blue_200"
+                    app:progressView_labelColorInner="@color/white"
+                    app:progressView_labelColorOuter="@color/black"
+                    app:progressView_labelSize="12sp"
+                    app:progressView_labelText="@{pkDetail.stats.defense}"
+                    app:progressView_max="@{pkDetail.stats.maxDefense}"
+                    app:progressView_progress="@{pkDetail.stats.defense}"
+                    app:progressView_radius="12dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/speed"
+                    style="@style/DetailStatsStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/title_spd"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/defense" />
+
+                <com.skydoves.progressview.ProgressView
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/speed"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/progress_hp"
+                    app:layout_constraintTop_toTopOf="@id/speed"
+                    app:progressView_colorBackground="@color/white"
+                    app:progressView_colorProgress="@color/flying"
+                    app:progressView_labelColorInner="@color/white"
+                    app:progressView_labelColorOuter="@color/black"
+                    app:progressView_labelSize="12sp"
+                    app:progressView_labelText="@{pkDetail.stats.speed}"
+                    app:progressView_max="@{pkDetail.stats.maxSpeed}"
+                    app:progressView_progress="@{pkDetail.stats.speed}"
+                    app:progressView_radius="12dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/exp"
+                    style="@style/DetailStatsStyle"
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/title_exp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/speed" />
+
+                <com.skydoves.progressview.ProgressView
+                    android:layout_width="0dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/exp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/progress_hp"
+                    app:layout_constraintTop_toTopOf="@id/exp"
+                    app:progressView_colorBackground="@color/white"
+                    app:progressView_colorProgress="@color/md_green_200"
+                    app:progressView_labelColorInner="@color/white"
+                    app:progressView_labelColorOuter="@color/black"
+                    app:progressView_labelSize="12sp"
+                    app:progressView_labelText="@{pkDetail.stats.exp}"
+                    app:progressView_max="@{pkDetail.stats.maxExp}"
+                    app:progressView_progress="@{pkDetail.stats.exp}"
+                    app:progressView_radius="12dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/DetailTitleStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_evolutiions"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/evolutionListView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:padding="6dp"
+                    app:layoutManager="LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_evolution" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

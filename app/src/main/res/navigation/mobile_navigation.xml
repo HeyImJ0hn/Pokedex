@@ -37,6 +37,15 @@
         android:id="@+id/nav_pokemon"
         android:name="dam_a47471.pokedex.ui.pokemon.PokemonsFragment"
         android:label="@string/pokemons"
-        tools:layout="@layout/fragment_pokemons"/>
+        tools:layout="@layout/fragment_pokemons">
+        <action
+            android:id="@+id/action_nav_pokemon_to_pokemonDetail"
+            app:destination="@id/pokemonDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonDetail"
+        android:name="dam_a47471.pokedex.ui.pokemon.detail.PokemonDetailFragment"
+        android:label="fragment_pokemon_detail2"
+        tools:layout="@layout/fragment_pokemon_detail" />
 
 </navigation>

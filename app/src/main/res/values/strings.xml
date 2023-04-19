@@ -14,11 +14,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-
-
     <string name="pk_generations">%1$d Generation</string>
     <string name="pk_id">#%1$d</string>
-
 
 
     <string name="menu_home">Home View</string>
