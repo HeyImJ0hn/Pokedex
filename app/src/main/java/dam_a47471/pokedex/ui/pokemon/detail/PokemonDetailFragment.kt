@@ -1,8 +1,8 @@
 package dam_a47471.pokedex.ui.pokemon.detail
 
+import EqualSpacingItemDecoration
 import android.app.Activity
 import android.os.Build
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +15,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import dam_a47471.pokedex.R
 import dam_a47471.pokedex.data.Pokemon
+import dam_a47471.pokedex.data.PokemonRegion
+import dam_a47471.pokedex.data.PokemonType
+import dam_a47471.pokedex.data.mocks.PokemonMockData
 import dam_a47471.pokedex.databinding.FragmentPokemonDetailBinding
 import dam_a47471.pokedex.ui.evolution.EvolutionAdapter
 import dam_a47471.pokedex.ui.type.TypeAdapter

@@ -7,4 +7,4 @@ data class PokemonRegion(
     var name: String,
     @DrawableRes val bg: Int,
     @DrawableRes val starters: Int
-)
+) : java.io.Serializable

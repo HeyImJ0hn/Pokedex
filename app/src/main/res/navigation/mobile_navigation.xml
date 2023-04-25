@@ -42,6 +42,7 @@
             android:id="@+id/action_nav_pokemon_to_pokemonDetail"
             app:destination="@id/pokemonDetail" />
     </fragment>
+
     <fragment
         android:id="@+id/pokemonDetail"
         android:name="dam_a47471.pokedex.ui.pokemon.detail.PokemonDetailFragment"

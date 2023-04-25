@@ -32,12 +32,8 @@ class RegionFragment : Fragment() {
             val regions: List<PokemonRegion> = it
             binding.regionsRecyclerView.adapter = RegionAdapter(
                 regions, itemClickedListener = { region ->
-                    val reg = region as PokemonRegion
                     val bundle = bundleOf(
-                        "id" to reg.id,
-                        "name" to reg.name,
-                        "bg" to reg.bg,
-                        "starters" to reg.starters
+                    "region" to region
                     )
                     findNavController().navigate(
                         R.id.action_nav_regions_to_nav_pokemon, bundle, null
