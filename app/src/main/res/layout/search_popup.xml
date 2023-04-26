@@ -66,7 +66,7 @@
                 app:strokeColor="@color/red_500"
                 app:strokeWidth="1dp" />
 
-            <RadioGroup
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
                 android:layout_marginStart="20dp"
@@ -86,16 +86,16 @@
 
                         <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
 
-                            <ToggleButton
+                            <CheckBox
                                 android:id="@+id/waterBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/water"
                                 android:buttonTint="@color/white"
-                                android:text="Water"
+                                android:text="@string/water"
                                 android:textAlignment="center"
-                                android:textOff="Water"
-                                android:textOn="Water" />
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
 
                         </androidx.cardview.widget.CardView>
 
@@ -103,28 +103,32 @@
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/fireBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/fire"
                                 android:buttonTint="@color/white"
-                                android:text="Fire"
-                                android:textAlignment="center" />
+                                android:text="@string/fire"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/bugBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/bug"
                                 android:buttonTint="@color/white"
-                                android:text="Bug"
-                                android:textAlignment="center" />
+                                android:text="@string/bug"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
                     </TableRow>
 
@@ -135,42 +139,48 @@
 
                         <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/ghostBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/ghost"
                                 android:buttonTint="@color/white"
-                                android:text="Ghost"
-                                android:textAlignment="center" />
+                                android:text="@string/ghost"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/grassBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/grass"
                                 android:buttonTint="@color/white"
-                                android:text="Grass"
-                                android:textAlignment="center" />
+                                android:text="@string/grass"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/groundBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/ground"
                                 android:buttonTint="@color/white"
-                                android:text="Ground"
-                                android:textAlignment="center" />
+                                android:text="@string/ground"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                     </TableRow>
@@ -182,42 +192,48 @@
 
                         <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/rockBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/rock"
                                 android:buttonTint="@color/white"
-                                android:text="Rock"
-                                android:textAlignment="center" />
+                                android:text="@string/rock"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/darkBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/dark"
                                 android:buttonTint="@color/white"
-                                android:text="Dark"
-                                android:textAlignment="center" />
+                                android:text="@string/dark"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/dragonBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/dragon"
                                 android:buttonTint="@color/white"
-                                android:text="Dragon"
-                                android:textAlignment="center" />
+                                android:text="@string/dragon"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                     </TableRow>
@@ -229,42 +245,48 @@
 
                         <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/electricBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/electric"
                                 android:buttonTint="@color/white"
-                                android:text="Electric"
-                                android:textAlignment="center" />
+                                android:text="@string/electric"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/fairyBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/fairy"
                                 android:buttonTint="@color/white"
-                                android:text="Fairy"
-                                android:textAlignment="center" />
+                                android:text="@string/fairy"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/fightingBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/fighting"
                                 android:buttonTint="@color/white"
-                                android:text="Fighting"
-                                android:textAlignment="center" />
+                                android:text="@string/fighting"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                     </TableRow>
@@ -276,42 +298,48 @@
 
                         <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/iceBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/ice"
                                 android:buttonTint="@color/white"
-                                android:text="Ice"
-                                android:textAlignment="center" />
+                                android:text="@string/ice"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/normalBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/normal"
                                 android:buttonTint="@color/white"
-                                android:text="Normal"
-                                android:textAlignment="center" />
+                                android:text="@string/normal"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/psychicBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="30dp"
                                 android:background="@color/psychic"
                                 android:buttonTint="@color/white"
-                                android:text="Psychic"
-                                android:textAlignment="center" />
+                                android:text="@string/psychic"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                     </TableRow>
@@ -323,49 +351,55 @@
 
                         <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/flyingBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="31dp"
                                 android:background="@color/flying"
                                 android:buttonTint="@color/white"
-                                android:text="Flying"
-                                android:textAlignment="center" />
+                                android:text="@string/flying"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/poisonBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="31dp"
                                 android:background="@color/poison"
                                 android:buttonTint="@color/white"
-                                android:text="Poison"
-                                android:textAlignment="center" />
+                                android:text="@string/poison"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
                             android:layout_marginStart="10dp"
                             app:cardCornerRadius="25dp">
 
-                            <RadioButton
+                            <CheckBox
                                 android:id="@+id/steelBtn"
                                 android:layout_width="100dp"
                                 android:layout_height="31dp"
                                 android:background="@color/steel"
                                 android:buttonTint="@color/white"
-                                android:text="Steel"
-                                android:textAlignment="center" />
+                                android:text="@string/steel"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
 
                     </TableRow>
 
                 </TableLayout>
 
-            </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
