@@ -37,4 +37,7 @@
     <string name="title_def">Defence</string>
     <string name="title_atk">Attack</string>
     <string name="search_button">Search button</string>
+    <string name="search">Search</string>
+    <string name="clear">Clear</string>
+    <string name="pokemon">Pokemon</string>
 </resources>

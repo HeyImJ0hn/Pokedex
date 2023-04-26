@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="380dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:autofillHints="@string/pokemon"
+                android:ems="10"
+                android:hint="@string/pokemon"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/searchBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/search"
+                app:cornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/clearBtn"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/clearBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/white"
+                android:text="@string/clear"
+                android:textColor="@color/red_500"
+                app:cornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/searchBtn"
+                app:strokeColor="@color/red_500"
+                app:strokeWidth="1dp" />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="240dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
+
+                            <ToggleButton
+                                android:id="@+id/waterBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/water"
+                                android:buttonTint="@color/white"
+                                android:text="Water"
+                                android:textAlignment="center"
+                                android:textOff="Water"
+                                android:textOn="Water" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/fireBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/fire"
+                                android:buttonTint="@color/white"
+                                android:text="Fire"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/bugBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/bug"
+                                android:buttonTint="@color/white"
+                                android:text="Bug"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/ghostBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/ghost"
+                                android:buttonTint="@color/white"
+                                android:text="Ghost"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/grassBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/grass"
+                                android:buttonTint="@color/white"
+                                android:text="Grass"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/groundBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/ground"
+                                android:buttonTint="@color/white"
+                                android:text="Ground"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/rockBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/rock"
+                                android:buttonTint="@color/white"
+                                android:text="Rock"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/darkBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/dark"
+                                android:buttonTint="@color/white"
+                                android:text="Dark"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/dragonBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/dragon"
+                                android:buttonTint="@color/white"
+                                android:text="Dragon"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/electricBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/electric"
+                                android:buttonTint="@color/white"
+                                android:text="Electric"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/fairyBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/fairy"
+                                android:buttonTint="@color/white"
+                                android:text="Fairy"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/fightingBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/fighting"
+                                android:buttonTint="@color/white"
+                                android:text="Fighting"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/iceBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/ice"
+                                android:buttonTint="@color/white"
+                                android:text="Ice"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/normalBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/normal"
+                                android:buttonTint="@color/white"
+                                android:text="Normal"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/psychicBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="30dp"
+                                android:background="@color/psychic"
+                                android:buttonTint="@color/white"
+                                android:text="Psychic"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.cardview.widget.CardView app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/flyingBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="31dp"
+                                android:background="@color/flying"
+                                android:buttonTint="@color/white"
+                                android:text="Flying"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/poisonBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="31dp"
+                                android:background="@color/poison"
+                                android:buttonTint="@color/white"
+                                android:text="Poison"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="25dp">
+
+                            <RadioButton
+                                android:id="@+id/steelBtn"
+                                android:layout_width="100dp"
+                                android:layout_height="31dp"
+                                android:background="@color/steel"
+                                android:buttonTint="@color/white"
+                                android:text="Steel"
+                                android:textAlignment="center" />
+                        </androidx.cardview.widget.CardView>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
