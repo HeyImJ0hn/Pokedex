@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
@@ -20,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import dam_a47471.pokedex.R
 import dam_a47471.pokedex.data.Pokemon
 import dam_a47471.pokedex.data.PokemonRegion
+import dam_a47471.pokedex.data.PokemonType
 import dam_a47471.pokedex.databinding.FragmentPokemonsBinding
 import dam_a47471.pokedex.ui.region.RegionAdapter
 
@@ -27,6 +29,13 @@ class PokemonsFragment : Fragment() {
     private var _binding: FragmentPokemonsBinding? = null
     private val viewModel: PokemonsViewModel by viewModels()
     private val binding get() = _binding!!
+
+    private var filtered = false
+    private var search = ""
+    private var filteredTypes : MutableList<PokemonType> = mutableListOf()
+
+    private var pokemons : List<Pokemon> = listOf()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -40,6 +49,8 @@ class PokemonsFragment : Fragment() {
 
         val dialog = Dialog(view.context)
 
+        val region = checkNotNull(arguments?.getParcelable("region", PokemonRegion::class.java))
+
         _binding?.floatingSearchBtn?.setOnClickListener {
             dialog.setContentView(R.layout.search_popup)
             dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -52,18 +63,22 @@ class PokemonsFragment : Fragment() {
             val searchBtn = dialog.findViewById<Button>(R.id.searchBtn)
 
             clearBtn.setOnClickListener {
+                filtered = false
                 dialog.hide()
             }
 
             searchBtn.setOnClickListener {
+                filtered = true
+                search = dialog.findViewById<EditText>(R.id.searchInput).text.toString()
+                filter(pokemons)
                 dialog.hide()
             }
 
         }
 
-        val region = checkNotNull(arguments?.getParcelable("region", PokemonRegion::class.java))
         viewModel.getListPokemonsByRegion(region).observe(viewLifecycleOwner, Observer {
-            val pokemons: List<Pokemon> = it
+            println(it)
+            pokemons = it
             binding.pokemonsRecyclerView.adapter = PokemonsAdapter(
                 pokemons, itemClickedListener = { pokemon ->
                     val bundle = bundleOf(
@@ -74,6 +89,7 @@ class PokemonsFragment : Fragment() {
                     )
                 }, view.context
             )
+            binding.pokemonsRecyclerView.adapter?.notifyDataSetChanged()
         })
     }
 
@@ -81,4 +97,20 @@ class PokemonsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun filter(pokemons : List<Pokemon>) : List<Pokemon> {
+        if (!filtered)
+            return pokemons
+
+        val list : MutableList<Pokemon> = mutableListOf()
+        for (pokemon in pokemons) {
+            if (pokemon.name.contains(search, ignoreCase = true)) {
+                println(pokemon.name)
+                list.add(pokemon)
+            }
+        }
+        this.pokemons = list
+        return list
+    }
+
 }

@@ -12,7 +12,11 @@ import dam_a47471.pokedex.data.Pokemon
 import dam_a47471.pokedex.databinding.ItemPokemonBinding
 import dam_a47471.pokedex.ui.events.OnItemClickedListener
 
-class PokemonsAdapter(private val pokemonList: List<Pokemon>, private val itemClickedListener: OnItemClickedListener? = null, private val context: Context?,) :
+class PokemonsAdapter(
+    private val pokemonList: List<Pokemon>,
+    private val itemClickedListener: OnItemClickedListener? = null,
+    private val context: Context?,
+) :
     RecyclerView.Adapter<PokemonsAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,6 +49,7 @@ class PokemonsAdapter(private val pokemonList: List<Pokemon>, private val itemCl
         private val POKEMON_DIFF_CALLBACK = object : DiffUtil.ItemCallback<Pokemon>() {
             override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =
                 oldItem.id == newItem.id
+
             override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =
                 oldItem == newItem
         }
