@@ -1,6 +1,7 @@
 package dam_a47471.pokedex.ui.pokemon
 
 import android.app.Dialog
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -11,9 +12,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -22,7 +25,9 @@ import dam_a47471.pokedex.R
 import dam_a47471.pokedex.data.Pokemon
 import dam_a47471.pokedex.data.PokemonRegion
 import dam_a47471.pokedex.data.PokemonType
+import dam_a47471.pokedex.data.mocks.PokemonMockData
 import dam_a47471.pokedex.databinding.FragmentPokemonsBinding
+import dam_a47471.pokedex.databinding.SearchPopupBinding
 import dam_a47471.pokedex.ui.region.RegionAdapter
 
 class PokemonsFragment : Fragment() {
@@ -31,10 +36,14 @@ class PokemonsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var filtered = false
+    private var exact = false
     private var search = ""
     private var filteredTypes : MutableList<PokemonType> = mutableListOf()
 
-    private var pokemons : List<Pokemon> = listOf()
+    private var ogPokemons : List<Pokemon> = listOf()
+
+    private var typeCheckboxes : List<CheckBox> = listOf()
+    private lateinit var exactCheckbox : CheckBox
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -49,36 +58,42 @@ class PokemonsFragment : Fragment() {
 
         val dialog = Dialog(view.context)
 
-        val region = checkNotNull(arguments?.getParcelable("region", PokemonRegion::class.java))
+        colorFAB()
 
         _binding?.floatingSearchBtn?.setOnClickListener {
             dialog.setContentView(R.layout.search_popup)
             dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.setCancelable(false)
-
             dialog.show()
 
-            val clearBtn = dialog.findViewById<Button>(R.id.clearBtn)
-            val searchBtn = dialog.findViewById<Button>(R.id.searchBtn)
+            val popupBinding : SearchPopupBinding = SearchPopupBinding.inflate(layoutInflater)
+            dialog.setContentView(popupBinding.root)
 
-            clearBtn.setOnClickListener {
-                filtered = false
-                dialog.hide()
+            exactCheckbox = popupBinding.exactCb
+            typeCheckboxes = listOf(popupBinding.waterBtn, popupBinding.fireBtn, popupBinding.bugBtn, popupBinding.ghostBtn, popupBinding.grassBtn, popupBinding.groundBtn,
+                popupBinding.rockBtn, popupBinding.darkBtn, popupBinding.dragonBtn, popupBinding.electricBtn, popupBinding.fairyBtn, popupBinding.fightingBtn,
+                popupBinding.iceBtn, popupBinding.normalBtn, popupBinding.psychicBtn, popupBinding.flyingBtn, popupBinding.poisonBtn, popupBinding.steelBtn)
+
+            popupBinding.searchInput.setText(search)
+            checkCheckboxes()
+
+            popupBinding.clearBtn.setOnClickListener {
+                clear()
+                dialog.dismiss()
             }
 
-            searchBtn.setOnClickListener {
-                filtered = true
-                search = dialog.findViewById<EditText>(R.id.searchInput).text.toString()
-                filter(pokemons)
-                dialog.hide()
+            popupBinding.searchBtn.setOnClickListener {
+                search(popupBinding)
+                dialog.dismiss()
             }
 
         }
 
+        val region = checkNotNull(arguments?.getParcelable("region", PokemonRegion::class.java))
+        ogPokemons = viewModel.getListPokemonsByRegion(region).value!!
         viewModel.getListPokemonsByRegion(region).observe(viewLifecycleOwner, Observer {
-            println(it)
-            pokemons = it
+            val pokemons : List<Pokemon> = filter(it)
             binding.pokemonsRecyclerView.adapter = PokemonsAdapter(
                 pokemons, itemClickedListener = { pokemon ->
                     val bundle = bundleOf(
@@ -89,7 +104,6 @@ class PokemonsFragment : Fragment() {
                     )
                 }, view.context
             )
-            binding.pokemonsRecyclerView.adapter?.notifyDataSetChanged()
         })
     }
 
@@ -99,18 +113,96 @@ class PokemonsFragment : Fragment() {
     }
 
     private fun filter(pokemons : List<Pokemon>) : List<Pokemon> {
+        if (!filtered && binding.pokemonsRecyclerView.adapter != null) {
+            (binding.pokemonsRecyclerView.adapter as PokemonsAdapter).setPokemonList(ogPokemons)
+            binding.pokemonsRecyclerView.adapter?.notifyDataSetChanged()
+            return ogPokemons
+        }
+
         if (!filtered)
             return pokemons
 
         val list : MutableList<Pokemon> = mutableListOf()
         for (pokemon in pokemons) {
-            if (pokemon.name.contains(search, ignoreCase = true)) {
-                println(pokemon.name)
-                list.add(pokemon)
+            if (!exact) {
+                if (pokemon.name.contains(search, ignoreCase = true) && filteredTypes.isEmpty())
+                    list.add(pokemon)
+                else if (pokemon.name.contains(search, ignoreCase = true) && filteredTypes.isNotEmpty() && pokemon.types.intersect(filteredTypes.toSet()).isNotEmpty())
+                    list.add(pokemon)
+            } else {
+                if (pokemon.name.contains(search, ignoreCase = true) && filteredTypes.isNotEmpty())
+                    if (filteredTypes == pokemon.types || (pokemon.types[0] == pokemon.types[1] && filteredTypes.size == 1 && filteredTypes[0] == pokemon.types[0]))
+                        list.add(pokemon)
             }
         }
-        this.pokemons = list
+
+        if (binding.pokemonsRecyclerView.adapter != null) {
+            (binding.pokemonsRecyclerView.adapter as PokemonsAdapter).setPokemonList(list)
+            binding.pokemonsRecyclerView.adapter?.notifyDataSetChanged()
+        }
+
         return list
+    }
+
+    private fun getFilteredTypes(binding: SearchPopupBinding) {
+        filteredTypes = mutableListOf()
+        for (checkbox in typeCheckboxes)
+            if (checkbox.isChecked)
+                for (type in PokemonMockData.pokemonTypeMock)
+                    if (type.name == checkbox.text.toString().lowercase())
+                        filteredTypes.add(type);
+
+        exact = exactCheckbox.isChecked
+    }
+
+    private fun checkCheckboxes() {
+        for (checkbox in typeCheckboxes) {
+            for (type in filteredTypes)
+                if (checkbox.text.toString().lowercase() == type.name)
+                    checkbox.isChecked = true
+        }
+
+        exactCheckbox.isChecked = exact
+    }
+
+    private fun clear() {
+        if (filtered) {
+            filtered = false
+            filter(ogPokemons)
+            colorFAB()
+        }
+        filteredTypes = mutableListOf()
+        for (checkbox in typeCheckboxes)
+            checkbox.isChecked = false
+        exact = false
+        exactCheckbox.isChecked = exact
+        search = ""
+        _binding?.floatingSearchBtn!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.white))
+        _binding?.floatingSearchBtn!!.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.black))
+    }
+
+    private fun search(binding: SearchPopupBinding) {
+        search = binding.searchInput.text.toString()
+        getFilteredTypes(binding)
+        if (search != "" || filteredTypes.isNotEmpty()) {
+            filtered = true
+            filter(ogPokemons)
+            colorFAB()
+        }
+    }
+
+    private fun colorFAB() {
+        if (filtered) {
+            _binding?.floatingSearchBtn!!.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.red_500))
+            _binding?.floatingSearchBtn!!.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.white))
+        } else {
+            _binding?.floatingSearchBtn!!.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.white))
+            _binding?.floatingSearchBtn!!.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.black))
+        }
     }
 
 }

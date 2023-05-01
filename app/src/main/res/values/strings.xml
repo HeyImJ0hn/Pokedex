@@ -58,4 +58,7 @@
     <string name="flying">Flying</string>
     <string name="poison">Poison</string>
     <string name="steel">Steel</string>
+    <string name="exact_types_only">Exact types only</string>
+    <string name="pokedex">Pokedex</string>
+    <string name="credit">João Pires - A47471</string>
 </resources>

@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="0dp"
-        android:layout_height="380dp"
+        android:layout_height="420dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:cardCornerRadius="40dp"
@@ -66,7 +66,20 @@
                 app:strokeColor="@color/red_500"
                 app:strokeWidth="1dp" />
 
+            <CheckBox
+                android:id="@+id/exactCb"
+                android:layout_width="135dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/exact_types_only"
+                android:textAlignment="center"
+                android:buttonTint="@color/red_500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
                 android:layout_width="wrap_content"
                 android:layout_height="240dp"
                 android:layout_marginStart="20dp"

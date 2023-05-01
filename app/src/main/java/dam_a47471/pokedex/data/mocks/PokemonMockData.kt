@@ -52,126 +52,112 @@ object PokemonMockData {
             "bulbasaur",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/1.png",
-            regions[0], listOf(pokemonTypeMock[1], pokemonTypeMock[10])
+            regions[0], listOf(pokemonTypeMock[4], pokemonTypeMock[16])
         ),
         Pokemon(
             4,
             "charmander",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/4.png",
-            regions[0], pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[1], pokemonTypeMock[1])
         ),
         Pokemon(
             7,
             "squirtle",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/7.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[0], pokemonTypeMock[0])
         ),
         Pokemon(
             10,
             "caterpie",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/10.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[2], pokemonTypeMock[2])
         ),
         Pokemon(
             13,
             "weedle",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/13.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[2], pokemonTypeMock[16])
         ),
         Pokemon(
             16,
             "pidgey",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/16.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[13], pokemonTypeMock[15])
         ),
         Pokemon(
             19,
             "rattata",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/19.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[13], pokemonTypeMock[13])
         ),
         Pokemon(
             21,
             "spearow",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/21.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[13], pokemonTypeMock[15])
         ),
         Pokemon(
             23,
             "ekans",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/23.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[16], pokemonTypeMock[16])
         ),
         Pokemon(
             25,
             "pikachu",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/25.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[9], pokemonTypeMock[9])
         ),
         Pokemon(
             27,
             "sandshrew",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/27.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[5], pokemonTypeMock[5])
         ),
         Pokemon(
             29,
             "nidoran",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/29.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[16], pokemonTypeMock[16])
         ),
         Pokemon(
             35,
             "clefairy",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/35.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[10], pokemonTypeMock[10])
         ),
         Pokemon(
             37,
             "vulpix",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/37.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[1], pokemonTypeMock[1])
         ),
         Pokemon(
             39,
             "jigglypuff",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/39.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[13], pokemonTypeMock[10])
         ),
         Pokemon(
             41,
             "zubat",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master" +
                     "/sprites/pokemon/other/official-artwork/41.png",
-            regions[0],
-            pokemonTypeMock.take(2)
+            regions[0], listOf(pokemonTypeMock[16], pokemonTypeMock[15])
         ),
     )
     var pokemonDetail = pokemons.map {

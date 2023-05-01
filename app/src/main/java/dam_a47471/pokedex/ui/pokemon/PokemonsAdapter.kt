@@ -13,7 +13,7 @@ import dam_a47471.pokedex.databinding.ItemPokemonBinding
 import dam_a47471.pokedex.ui.events.OnItemClickedListener
 
 class PokemonsAdapter(
-    private val pokemonList: List<Pokemon>,
+    private var pokemonList: List<Pokemon>,
     private val itemClickedListener: OnItemClickedListener? = null,
     private val context: Context?,
 ) :
@@ -43,6 +43,10 @@ class PokemonsAdapter(
 
     override fun getItemCount(): Int {
         return pokemonList.size
+    }
+
+    fun setPokemonList(list: List<Pokemon>) {
+        this.pokemonList = list
     }
 
     companion object {
