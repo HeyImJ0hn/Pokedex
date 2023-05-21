@@ -22,21 +22,25 @@ class RegionAdapter(
 
         fun bindView(regionItem: PokemonRegion, itemClickedListener: OnItemClickedListener?) {
             viewBinding.regionNameTextView.text = regionItem.name
-            viewBinding.regionIdTextView.text = String.format(
-                itemView.context.getString(
-                    R.string.pk_generations
-                ), regionItem.id
-            )
-            viewBinding.regionBgImage.setImageDrawable(
-                ContextCompat.getDrawable(
-                    itemView.context, regionItem.bg
+
+            if (regionItem.bg != 0) {
+                viewBinding.regionIdTextView.text = String.format(
+                    itemView.context.getString(
+                        R.string.pk_generations
+                    ), regionItem.id
                 )
-            )
-            viewBinding.regionStartersImageView.setImageDrawable(
-                ContextCompat.getDrawable(
-                    itemView.context, regionItem.starters
+                viewBinding.regionBgImage.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        itemView.context, regionItem.bg
+                    )
                 )
-            )
+                viewBinding.regionStartersImageView.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        itemView.context, regionItem.starters
+                    )
+                )
+            }
+
             //viewBinding.region = regionItem
             itemView.setOnClickListener {
                 itemClickedListener?.invoke(regionItem)

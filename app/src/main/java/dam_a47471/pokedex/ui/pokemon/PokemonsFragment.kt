@@ -21,6 +21,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import dam_a47471.pokedex.PokemonContainer
 import dam_a47471.pokedex.R
 import dam_a47471.pokedex.data.Pokemon
 import dam_a47471.pokedex.data.PokemonRegion
@@ -91,9 +92,11 @@ class PokemonsFragment : Fragment() {
         }
 
         val region = checkNotNull(arguments?.getParcelable("region", PokemonRegion::class.java))
-        ogPokemons = viewModel.getListPokemonsByRegion(region).value!!
-        viewModel.getListPokemonsByRegion(region).observe(viewLifecycleOwner, Observer {
-            val pokemons : List<Pokemon> = filter(it)
+        viewModel.initViewMode(PokemonContainer.getInstance(requireContext()).pokemonRepository)
+
+        //ogPokemons = viewModel.getPokemonsByRegion(region).value!!
+        viewModel.getPokemonsByRegion(region).observe(viewLifecycleOwner, Observer {
+            val pokemons : List<Pokemon> = it
             binding.pokemonsRecyclerView.adapter = PokemonsAdapter(
                 pokemons, itemClickedListener = { pokemon ->
                     val bundle = bundleOf(

@@ -29,7 +29,8 @@ class PokemonDomain {
     }
 
     fun getPokemonDetail(pokemon: Pokemon): LiveData<PokemonDetail> {
-        return MutableLiveData(PokemonMockData.pokemonDetail.find { it.pokemon == pokemon })
+        return MutableLiveData(PokemonMockData.pokemonDetail.find {
+            it.pokemon == pokemon })
     }
 
 }

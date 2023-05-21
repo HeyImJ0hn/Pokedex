@@ -23,6 +23,7 @@ class PokemonsAdapter(
         private val viewBinding = ItemPokemonBinding.bind(itemView)
 
         fun bindView(pokemonItem: Pokemon, itemClickedListener: OnItemClickedListener?) {
+            viewBinding.showElement = pokemonItem.types.size == 2
             viewBinding.pokemon = pokemonItem
             itemView.setOnClickListener {
                 itemClickedListener?.invoke(pokemonItem)

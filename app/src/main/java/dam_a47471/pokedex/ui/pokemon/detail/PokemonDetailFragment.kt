@@ -31,10 +31,7 @@ class PokemonDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPokemonDetailBinding.inflate(
-            inflater, container,
-            false
-        )
+        _binding = FragmentPokemonDetailBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val activity: Activity? = activity
         if (activity is AppCompatActivity) {
@@ -55,9 +52,10 @@ class PokemonDetailFragment : Fragment() {
             arguments?.getParcelable("pokemon", Pokemon::class.java)
         )
         binding.pokemon = pokemon
-        viewModel.getPokemonDetail(pokemon).observe(viewLifecycleOwner,  Observer {
+        viewModel.getPokemonDetail(pokemon).observe(viewLifecycleOwner, Observer {
             binding.pkDetail = it
-            binding.typeListView.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+            binding.typeListView.layoutManager =
+                LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
             binding.typeListView.adapter = TypeAdapter(pokemon.types, view.context)
             binding.typeListView.addItemDecoration(
                 EqualSpacingItemDecoration(30, EqualSpacingItemDecoration.HORIZONTAL)

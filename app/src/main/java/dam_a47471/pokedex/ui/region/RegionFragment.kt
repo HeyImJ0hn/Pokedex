@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import dam_a47471.pokedex.PokemonContainer
 import dam_a47471.pokedex.R
 import dam_a47471.pokedex.data.PokemonRegion
 import dam_a47471.pokedex.databinding.FragmentRegionBinding
@@ -28,13 +29,13 @@ class RegionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        regionViewModel.initViewMode(PokemonContainer.getInstance(requireContext()).regionRepository)
+
         regionViewModel.getRegions().observe(viewLifecycleOwner) {
             val regions: List<PokemonRegion> = it
             binding.regionsRecyclerView.adapter = RegionAdapter(
                 regions, itemClickedListener = { region ->
-                    val bundle = bundleOf(
-                    "region" to region
-                    )
+                    val bundle = bundleOf("region" to region)
                     findNavController().navigate(
                         R.id.action_nav_regions_to_nav_pokemon, bundle, null
                     )
