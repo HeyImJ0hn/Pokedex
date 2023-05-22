@@ -13,12 +13,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import dam_a47471.pokedex.PokemonContainer
 import dam_a47471.pokedex.R
 import dam_a47471.pokedex.data.Pokemon
 import dam_a47471.pokedex.data.PokemonRegion
 import dam_a47471.pokedex.data.PokemonType
 import dam_a47471.pokedex.data.mocks.PokemonMockData
 import dam_a47471.pokedex.databinding.FragmentPokemonDetailBinding
+import dam_a47471.pokedex.model.repository.PokemonMapper
+import dam_a47471.pokedex.model.repository.PokemonRepository
 import dam_a47471.pokedex.ui.evolution.EvolutionAdapter
 import dam_a47471.pokedex.ui.type.TypeAdapter
 
@@ -51,16 +54,19 @@ class PokemonDetailFragment : Fragment() {
         val pokemon = checkNotNull(
             arguments?.getParcelable("pokemon", Pokemon::class.java)
         )
+        viewModel.initViewMode(PokemonContainer.getInstance(requireContext()).pokemonRepository)
         binding.pokemon = pokemon
         viewModel.getPokemonDetail(pokemon).observe(viewLifecycleOwner, Observer {
-            binding.pkDetail = it
+            val detail = PokemonMapper.toPokemonDetail(it.detail)
+            binding.pkDetail = detail
+            binding.pkStats = PokemonMapper.toPokemonStats(it.stats)
             binding.typeListView.layoutManager =
                 LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
             binding.typeListView.adapter = TypeAdapter(pokemon.types, view.context)
             binding.typeListView.addItemDecoration(
                 EqualSpacingItemDecoration(30, EqualSpacingItemDecoration.HORIZONTAL)
             );
-            binding.evolutionListView.adapter = EvolutionAdapter(it.evolution!!, view.context)
+            binding.evolutionListView.adapter = EvolutionAdapter(detail.evolution!!, view.context)
             binding.evolutionListView.addItemDecoration(
                 EqualSpacingItemDecoration(30, EqualSpacingItemDecoration.VERTICAL)
             );

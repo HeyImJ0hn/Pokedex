@@ -76,8 +76,47 @@ data class PokemonWithTypes(
 )
 
 @Entity(tableName = "pokemon_details")
-data class PokemonEntityDetails(
+data class PokemonDetailsEntity(
     @PrimaryKey
-    @ColumnInfo(name = "pkId")
-    var pkId: Int,
+    @ColumnInfo(name = "details_id")
+    var id: Int,
+    @ColumnInfo(name = "weight")
+    var weight: Float,
+    @ColumnInfo(name = "height")
+    var height: Float,
+    @ColumnInfo(name = "ability_name")
+    var ability: String,
+)
+
+@Entity(tableName = "pokemon_stats")
+data class PokemonStatsEntity(
+    @PrimaryKey
+    @ColumnInfo(name = "stats_id")
+    var id: Int,
+    @ColumnInfo(name = "hp")
+    var hp: Int,
+    @ColumnInfo(name = "attack")
+    var atk: Int,
+    @ColumnInfo(name = "defense")
+    var def: Int,
+    @ColumnInfo(name = "special_attack")
+    var spAtk: Int,
+    @ColumnInfo(name = "special_defense")
+    var spDef: Int,
+    @ColumnInfo(name = "speed")
+    var spd: Int
+)
+
+data class PokemonWithDetailsAndStats(
+    @Embedded val pokemon: PokemonEntity,
+    @Relation(
+        parentColumn = "pkId",
+        entityColumn = "details_id"
+    )
+    val detail: PokemonDetailsEntity,
+    @Relation(
+        parentColumn = "pkId",
+        entityColumn = "stats_id"
+    )
+    val stats: PokemonStatsEntity
 )

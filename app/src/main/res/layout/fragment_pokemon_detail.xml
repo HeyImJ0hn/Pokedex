@@ -14,6 +14,10 @@
         <variable
             name="pkDetail"
             type="dam_a47471.pokedex.data.PokemonDetail" />
+
+        <variable
+            name="pkStats"
+            type="dam_a47471.pokedex.data.PokemonStats" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -270,7 +274,7 @@
                                 android:layout_width="120dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/pk_detail_general_text"
-                                android:text="@{Double.toString(pkDetail.height)}"
+                                android:text="@{pkDetail.ability}"
                                 tools:text="12Kg" />
                         </LinearLayout>
                     </LinearLayout>
@@ -324,9 +328,9 @@
                     app:progressView_labelColorInner="@color/black"
                     app:progressView_labelColorOuter="@color/black"
                     app:progressView_labelSize="12sp"
-                    app:progressView_labelText="@{pkDetail.stats.hp}"
-                    app:progressView_max="@{pkDetail.stats.maxHp}"
-                    app:progressView_progress="@{pkDetail.stats.hp}"
+                    app:progressView_labelText="@{pkStats.hp}"
+                    app:progressView_max="@{pkStats.maxHp}"
+                    app:progressView_progress="@{pkStats.hp}"
                     app:progressView_radius="12dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -354,9 +358,9 @@
                     app:progressView_labelColorInner="@color/black"
                     app:progressView_labelColorOuter="@color/black"
                     app:progressView_labelSize="12sp"
-                    app:progressView_labelText="@{pkDetail.stats.attack}"
-                    app:progressView_max="@{pkDetail.stats.maxAttack}"
-                    app:progressView_progress="@{pkDetail.stats.attack}"
+                    app:progressView_labelText="@{pkStats.attack}"
+                    app:progressView_max="@{pkStats.maxAttack}"
+                    app:progressView_progress="@{pkStats.attack}"
                     app:progressView_radius="12dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -384,9 +388,9 @@
                     app:progressView_labelColorInner="@color/white"
                     app:progressView_labelColorOuter="@color/black"
                     app:progressView_labelSize="12sp"
-                    app:progressView_labelText="@{pkDetail.stats.defense}"
-                    app:progressView_max="@{pkDetail.stats.maxDefense}"
-                    app:progressView_progress="@{pkDetail.stats.defense}"
+                    app:progressView_labelText="@{pkStats.defense}"
+                    app:progressView_max="@{pkStats.maxDefense}"
+                    app:progressView_progress="@{pkStats.defense}"
                     app:progressView_radius="12dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -414,9 +418,9 @@
                     app:progressView_labelColorInner="@color/white"
                     app:progressView_labelColorOuter="@color/black"
                     app:progressView_labelSize="12sp"
-                    app:progressView_labelText="@{pkDetail.stats.speed}"
-                    app:progressView_max="@{pkDetail.stats.maxSpeed}"
-                    app:progressView_progress="@{pkDetail.stats.speed}"
+                    app:progressView_labelText="@{pkStats.speed}"
+                    app:progressView_max="@{pkStats.maxSpeed}"
+                    app:progressView_progress="@{pkStats.speed}"
                     app:progressView_radius="12dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -444,9 +448,9 @@
                     app:progressView_labelColorInner="@color/white"
                     app:progressView_labelColorOuter="@color/black"
                     app:progressView_labelSize="12sp"
-                    app:progressView_labelText="@{pkDetail.stats.exp}"
-                    app:progressView_max="@{pkDetail.stats.maxExp}"
-                    app:progressView_progress="@{pkDetail.stats.exp}"
+                    app:progressView_labelText="@{pkStats.exp}"
+                    app:progressView_max="@{pkStats.maxExp}"
+                    app:progressView_progress="@{pkStats.exp}"
                     app:progressView_radius="12dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

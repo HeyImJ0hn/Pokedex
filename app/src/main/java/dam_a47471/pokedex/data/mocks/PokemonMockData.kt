@@ -161,13 +161,11 @@ object PokemonMockData {
         ),
     )
     var pokemonDetail = pokemons.map {
-        PokemonDetail(
-            it,
+        PokemonDetail(0,
             pokemonDetailDescription,
-            pokemonTypeMock.asSequence().shuffled().take(1).toList(),
-            (Random.nextDouble(20.0, 50.0) * 100.0).roundToInt() / 100.0,
-            (Random.nextDouble(0.20, 2.0) * 100.0).roundToInt() / 100.0,
-            PokemonStats(),
+            (Random.nextDouble(20.0, 50.0) * 100.0).roundToInt() / 100.0f,
+            (Random.nextDouble(0.20, 2.0) * 100.0).roundToInt() / 100.0f,
+            "Overgrowth",
             generateSequence {
                 PokemonEvolution(
                     1, pokemons.random(), false,

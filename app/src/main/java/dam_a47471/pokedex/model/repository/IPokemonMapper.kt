@@ -1,11 +1,8 @@
 package dam_a47471.pokedex.model.repository
 
-import dam_a47471.pokedex.data.Pokemon
-import dam_a47471.pokedex.data.PokemonRegion
-import dam_a47471.pokedex.data.PokemonType
-import dam_a47471.pokedex.model.PokemonEntity
-import dam_a47471.pokedex.model.RegionEntity
-import dam_a47471.pokedex.model.TypeEntity
+import dam_a47471.pokedex.data.*
+import dam_a47471.pokedex.data.PokemonStats
+import dam_a47471.pokedex.model.*
 import dam_a47471.pokedex.model.responses.*
 
 interface IPokemonMapper {
@@ -41,4 +38,12 @@ interface IPokemonMapper {
         region: PokemonRegion,
         types: List<TypeEntity>
     ): Pokemon
+
+    fun toDetailsEntity(detail: PokemonDetail): PokemonDetailsEntity
+
+    fun toStatsEntity(stats: PokemonStats): PokemonStatsEntity
+
+    fun toPokemonDetail(detailsEntity: PokemonDetailsEntity): PokemonDetail
+
+    fun toPokemonStats(statsEntity: PokemonStatsEntity): PokemonStats
 }

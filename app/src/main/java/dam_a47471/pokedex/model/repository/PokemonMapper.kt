@@ -1,13 +1,12 @@
 package dam_a47471.pokedex.model.repository
 
 import android.content.Context
-import dam_a47471.pokedex.data.Pokemon
-import dam_a47471.pokedex.data.PokemonRegion
-import dam_a47471.pokedex.data.PokemonType
-import dam_a47471.pokedex.model.PokemonEntity
-import dam_a47471.pokedex.model.RegionEntity
-import dam_a47471.pokedex.model.TypeEntity
+import dam_a47471.pokedex.data.*
+import dam_a47471.pokedex.data.PokemonStats
+import dam_a47471.pokedex.data.mocks.PokemonMockData
+import dam_a47471.pokedex.model.*
 import dam_a47471.pokedex.model.responses.*
+import kotlin.random.Random
 
 object PokemonMapper : IPokemonMapper {
     private val regexToGetId = "/([^/]+)/?\$".toRegex()
@@ -108,5 +107,40 @@ object PokemonMapper : IPokemonMapper {
                 pokemon.id, pokemon.name, pokemon.imageUrl, it.id
             )
         }
+    }
+
+    override fun toDetailsEntity(detail: PokemonDetail): PokemonDetailsEntity {
+        return PokemonDetailsEntity(detail.id, detail.weight!!, detail.height!!, detail.ability!!)
+    }
+
+    override fun toStatsEntity(stats: PokemonStats): PokemonStatsEntity {
+        return PokemonStatsEntity(
+            stats.id,
+            stats.hp,
+            stats.attack,
+            stats.defense,
+            stats.specialAttack,
+            stats.specialDefense,
+            stats.speed
+        )
+    }
+
+    override fun toPokemonDetail(detailsEntity: PokemonDetailsEntity): PokemonDetail {
+        return PokemonDetail(
+            detailsEntity.id,
+            "",
+            detailsEntity.weight,
+            detailsEntity.height,
+            detailsEntity.ability,
+            generateSequence {
+                PokemonEvolution(
+                    1, PokemonMockData.pokemons.random(), false, 0, "", 0, ""
+                )
+            }.take(Random.nextInt(1, 3)).toList()
+        )
+    }
+
+    override fun toPokemonStats(statsEntity: PokemonStatsEntity): PokemonStats {
+        return PokemonStats(statsEntity.id, statsEntity.hp, statsEntity.atk, statsEntity.def, statsEntity.spAtk, statsEntity.spAtk, statsEntity.spd)
     }
 }

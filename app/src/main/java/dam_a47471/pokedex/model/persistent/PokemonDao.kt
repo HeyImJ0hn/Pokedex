@@ -1,10 +1,7 @@
 package dam_a47471.pokedex.model.persistent
 
 import androidx.room.*
-import dam_a47471.pokedex.model.PokemonEntity
-import dam_a47471.pokedex.model.PokemonTypesCrossRef
-import dam_a47471.pokedex.model.PokemonWithTypes
-import dam_a47471.pokedex.model.RegionWithPokemons
+import dam_a47471.pokedex.model.*
 
 @Dao
 interface PokemonDao {
@@ -21,4 +18,8 @@ interface PokemonDao {
     @Transaction
     @Query("SELECT * FROM pokemon WHERE pkId = :pokemonId")
     fun getTypesByPokemon(pokemonId: Int): PokemonWithTypes
+
+    @Transaction
+    @Query("SELECT * FROM pokemon WHERE pkId = :pokemonId")
+    fun getDetailsAndStatsByPokemonId(pokemonId: Int): PokemonWithDetailsAndStats
 }

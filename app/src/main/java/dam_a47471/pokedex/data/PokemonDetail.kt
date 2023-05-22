@@ -1,12 +1,11 @@
 package dam_a47471.pokedex.data
 
 data class PokemonDetail(
-    var pokemon: Pokemon,
+    var id: Int,
     var description: String,
-    var types:List<PokemonType>?,
-    var weight:Double?,
-    var height: Double?,
-    var stats: PokemonStats?,
+    var weight:Float?,
+    var height: Float?,
+    var ability: String?,
     var evolution: List<PokemonEvolution>?
 )
 

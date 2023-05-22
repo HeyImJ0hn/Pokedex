@@ -18,22 +18,12 @@ data class PokemonDetailResponse(
 data class PokemonStats(
     @field:Json(name = "base_stat") val baseStat: Int?,
     @field:Json(name = "effort") val effort: Int?,
-    @field:Json(name = "stat") val statName: PokemonStatDescription?
-)
-
-@JsonClass(generateAdapter = true)
-data class PokemonStatDescription(
-    @field:Json(name = "name") val statName: String?
+    @field:Json(name = "stat") val stat: PokemonGenericResponse?
 )
 
 @JsonClass(generateAdapter = true)
 data class PokemonAbilities(
-    @field:Json(name = "ability") val ability: PokemonAbility?,
+    @field:Json(name = "ability") val ability: PokemonGenericResponse?,
     @field:Json(name = "is_hidden") val is_hidden: Boolean?,
     @field:Json(name = "slot") val slot: Int?
-)
-
-@JsonClass(generateAdapter = true)
-data class PokemonAbility(
-    @field:Json(name = "name") val name: String?,
 )
