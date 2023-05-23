@@ -110,7 +110,14 @@ object PokemonMapper : IPokemonMapper {
     }
 
     override fun toDetailsEntity(detail: PokemonDetail): PokemonDetailsEntity {
-        return PokemonDetailsEntity(detail.id, detail.weight!!, detail.height!!, detail.ability!!)
+        return PokemonDetailsEntity(
+            detail.id,
+            detail.weight!!,
+            detail.height!!,
+            detail.ability!!,
+            detail.category!!,
+            detail.description
+        )
     }
 
     override fun toStatsEntity(stats: PokemonStats): PokemonStatsEntity {
@@ -128,10 +135,11 @@ object PokemonMapper : IPokemonMapper {
     override fun toPokemonDetail(detailsEntity: PokemonDetailsEntity): PokemonDetail {
         return PokemonDetail(
             detailsEntity.id,
-            "",
+            detailsEntity.description.replace("\n", " "),
             detailsEntity.weight,
             detailsEntity.height,
             detailsEntity.ability,
+            detailsEntity.category,
             generateSequence {
                 PokemonEvolution(
                     1, PokemonMockData.pokemons.random(), false, 0, "", 0, ""
@@ -141,6 +149,40 @@ object PokemonMapper : IPokemonMapper {
     }
 
     override fun toPokemonStats(statsEntity: PokemonStatsEntity): PokemonStats {
-        return PokemonStats(statsEntity.id, statsEntity.hp, statsEntity.atk, statsEntity.def, statsEntity.spAtk, statsEntity.spAtk, statsEntity.spd)
+        return PokemonStats(
+            statsEntity.id,
+            statsEntity.hp,
+            statsEntity.atk,
+            statsEntity.def,
+            statsEntity.spAtk,
+            statsEntity.spAtk,
+            statsEntity.spd
+        )
+    }
+
+    override fun toEvolution(
+        evolutionEntity: PokemonEvolutionEntity,
+        pokemon: Pokemon
+    ): PokemonEvolution {
+        return PokemonEvolution(
+            evolutionEntity.id,
+            pokemon,
+            false,
+            evolutionEntity.minLevel,
+            evolutionEntity.item,
+            evolutionEntity.minHappiness,
+            evolutionEntity.time
+        )
+    }
+
+    override fun toEvolutionEntity(evolution: PokemonEvolution): PokemonEvolutionEntity {
+        return PokemonEvolutionEntity(
+            evolution.id,
+            evolution.pokemon.id,
+            evolution.minLevel!!,
+            evolution.item!!,
+            evolution.minHappiness!!,
+            evolution.time!!
+        )
     }
 }

@@ -34,7 +34,8 @@ class PokemonContainer(private val context: Context) {
             pokemonClient, pokemonDBManager.pokemonDao(),
             pokemonDBManager.typeDao(),
             pokemonDBManager.detailDao(),
-            pokemonDBManager.statsDao()
+            pokemonDBManager.statsDao(),
+            pokemonDBManager.evoDao()
         )
         regionRepository = RegionRepository(pokemonClient, pokemonDBManager.regionDao())
         PokemonMapper.initialize(context)

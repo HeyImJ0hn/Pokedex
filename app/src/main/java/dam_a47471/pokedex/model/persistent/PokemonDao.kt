@@ -22,4 +22,9 @@ interface PokemonDao {
     @Transaction
     @Query("SELECT * FROM pokemon WHERE pkId = :pokemonId")
     fun getDetailsAndStatsByPokemonId(pokemonId: Int): PokemonWithDetailsAndStats
+
+    @Transaction
+    @Query("SELECT * FROM pokemon WHERE pkId = :pokemonId")
+    fun getPokemonById(pokemonId: Int): PokemonEntity
+
 }

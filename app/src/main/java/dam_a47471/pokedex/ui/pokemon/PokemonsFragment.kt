@@ -39,12 +39,12 @@ class PokemonsFragment : Fragment() {
     private var filtered = false
     private var exact = false
     private var search = ""
-    private var filteredTypes : MutableList<PokemonType> = mutableListOf()
+    private var filteredTypes: MutableList<String> = mutableListOf()
 
-    private var ogPokemons : List<Pokemon> = listOf()
+    private var ogPokemons: List<Pokemon> = listOf()
 
-    private var typeCheckboxes : List<CheckBox> = listOf()
-    private lateinit var exactCheckbox : CheckBox
+    private var typeCheckboxes: List<CheckBox> = listOf()
+    private lateinit var exactCheckbox: CheckBox
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -63,18 +63,38 @@ class PokemonsFragment : Fragment() {
 
         _binding?.floatingSearchBtn?.setOnClickListener {
             dialog.setContentView(R.layout.search_popup)
-            dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.setCancelable(false)
             dialog.show()
 
-            val popupBinding : SearchPopupBinding = SearchPopupBinding.inflate(layoutInflater)
+            val popupBinding: SearchPopupBinding = SearchPopupBinding.inflate(layoutInflater)
             dialog.setContentView(popupBinding.root)
 
             exactCheckbox = popupBinding.exactCb
-            typeCheckboxes = listOf(popupBinding.waterBtn, popupBinding.fireBtn, popupBinding.bugBtn, popupBinding.ghostBtn, popupBinding.grassBtn, popupBinding.groundBtn,
-                popupBinding.rockBtn, popupBinding.darkBtn, popupBinding.dragonBtn, popupBinding.electricBtn, popupBinding.fairyBtn, popupBinding.fightingBtn,
-                popupBinding.iceBtn, popupBinding.normalBtn, popupBinding.psychicBtn, popupBinding.flyingBtn, popupBinding.poisonBtn, popupBinding.steelBtn)
+            typeCheckboxes = listOf(
+                popupBinding.waterBtn,
+                popupBinding.fireBtn,
+                popupBinding.bugBtn,
+                popupBinding.ghostBtn,
+                popupBinding.grassBtn,
+                popupBinding.groundBtn,
+                popupBinding.rockBtn,
+                popupBinding.darkBtn,
+                popupBinding.dragonBtn,
+                popupBinding.electricBtn,
+                popupBinding.fairyBtn,
+                popupBinding.fightingBtn,
+                popupBinding.iceBtn,
+                popupBinding.normalBtn,
+                popupBinding.psychicBtn,
+                popupBinding.flyingBtn,
+                popupBinding.poisonBtn,
+                popupBinding.steelBtn
+            )
 
             popupBinding.searchInput.setText(search)
             checkCheckboxes()
@@ -94,9 +114,9 @@ class PokemonsFragment : Fragment() {
         val region = checkNotNull(arguments?.getParcelable("region", PokemonRegion::class.java))
         viewModel.initViewMode(PokemonContainer.getInstance(requireContext()).pokemonRepository)
 
-        //ogPokemons = viewModel.getPokemonsByRegion(region).value!!
         viewModel.getPokemonsByRegion(region).observe(viewLifecycleOwner, Observer {
-            val pokemons : List<Pokemon> = it
+            val pokemons: List<Pokemon> = it
+            ogPokemons = it
             binding.pokemonsRecyclerView.adapter = PokemonsAdapter(
                 pokemons, itemClickedListener = { pokemon ->
                     val bundle = bundleOf(
@@ -105,6 +125,8 @@ class PokemonsFragment : Fragment() {
                     findNavController().navigate(
                         R.id.action_nav_pokemon_to_pokemonDetail, bundle, null
                     )
+                    if (filtered)
+                        clear()
                 }, view.context
             )
         })
@@ -115,27 +137,34 @@ class PokemonsFragment : Fragment() {
         _binding = null
     }
 
-    private fun filter(pokemons : List<Pokemon>) : List<Pokemon> {
+    private fun filter(pokemons: List<Pokemon>): List<Pokemon> {
         if (!filtered && binding.pokemonsRecyclerView.adapter != null) {
-            (binding.pokemonsRecyclerView.adapter as PokemonsAdapter).setPokemonList(ogPokemons)
+            (binding.pokemonsRecyclerView.adapter as PokemonsAdapter).setPokemonList(pokemons)
             binding.pokemonsRecyclerView.adapter?.notifyDataSetChanged()
-            return ogPokemons
+            return pokemons
         }
 
         if (!filtered)
             return pokemons
 
-        val list : MutableList<Pokemon> = mutableListOf()
+        val list: MutableList<Pokemon> = mutableListOf()
         for (pokemon in pokemons) {
+            val pokeTypes: MutableList<String> = mutableListOf()
+            pokemon.types.forEach { pokeTypes.add(it.name) }
             if (!exact) {
                 if (pokemon.name.contains(search, ignoreCase = true) && filteredTypes.isEmpty())
                     list.add(pokemon)
-                else if (pokemon.name.contains(search, ignoreCase = true) && filteredTypes.isNotEmpty() && pokemon.types.intersect(filteredTypes.toSet()).isNotEmpty())
+                else if (pokemon.name.contains(
+                        search,
+                        ignoreCase = true
+                    ) && filteredTypes.isNotEmpty() && pokeTypes.intersect(filteredTypes.toSet())
+                        .isNotEmpty()
+                )
                     list.add(pokemon)
             } else {
-                if (pokemon.name.contains(search, ignoreCase = true) && filteredTypes.isNotEmpty())
+                /*if (pokemon.name.contains(search, ignoreCase = true) && filteredTypes.isNotEmpty())
                     if (filteredTypes == pokemon.types || (pokemon.types[0] == pokemon.types[1] && filteredTypes.size == 1 && filteredTypes[0] == pokemon.types[0]))
-                        list.add(pokemon)
+                        list.add(pokemon)*/
             }
         }
 
@@ -153,7 +182,7 @@ class PokemonsFragment : Fragment() {
             if (checkbox.isChecked)
                 for (type in PokemonMockData.pokemonTypeMock)
                     if (type.name == checkbox.text.toString().lowercase())
-                        filteredTypes.add(type);
+                        filteredTypes.add(type.name);
 
         exact = exactCheckbox.isChecked
     }
@@ -161,10 +190,9 @@ class PokemonsFragment : Fragment() {
     private fun checkCheckboxes() {
         for (checkbox in typeCheckboxes) {
             for (type in filteredTypes)
-                if (checkbox.text.toString().lowercase() == type.name)
+                if (checkbox.text.toString().lowercase() == type)
                     checkbox.isChecked = true
         }
-
         exactCheckbox.isChecked = exact
     }
 
@@ -180,8 +208,10 @@ class PokemonsFragment : Fragment() {
         exact = false
         exactCheckbox.isChecked = exact
         search = ""
-        _binding?.floatingSearchBtn!!.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.white))
-        _binding?.floatingSearchBtn!!.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.black))
+        _binding?.floatingSearchBtn!!.backgroundTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.white))
+        _binding?.floatingSearchBtn!!.imageTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.black))
     }
 
     private fun search(binding: SearchPopupBinding) {
@@ -207,5 +237,4 @@ class PokemonsFragment : Fragment() {
                 ColorStateList.valueOf(ContextCompat.getColor(context!!, R.color.black))
         }
     }
-
 }

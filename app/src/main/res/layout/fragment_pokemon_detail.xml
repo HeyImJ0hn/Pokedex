@@ -248,7 +248,7 @@
                                 android:layout_width="120dp"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/pk_detail_general_text"
-                                android:text="@{Double.toString(pkDetail.height)}"
+                                android:text="@{pkDetail.category}"
                                 tools:text="12Kg" />
                         </LinearLayout>
 

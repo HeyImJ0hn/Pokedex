@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dam_a47471.pokedex.data.Pokemon
-import dam_a47471.pokedex.domain.PokemonDomain
 import dam_a47471.pokedex.model.PokemonWithDetailsAndStats
 import dam_a47471.pokedex.model.repository.PokemonRepository
 import kotlinx.coroutines.Dispatchers

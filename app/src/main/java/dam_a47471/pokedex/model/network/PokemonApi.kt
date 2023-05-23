@@ -21,6 +21,12 @@ interface PokemonApi {
     @GET("pokemon/{id}")
     suspend fun fetchPokemonDetailById(@Path("id") id: Int): PokemonDetailResponse
 
+    @GET("pokemon-species/{id}")
+    suspend fun fetchPokemonSpeciesById(@Path("id") id: Int): PokemonSpeciesResponse
+
+    @GET("evolution-chain/{id}")
+    suspend fun fetchEvolutionChainById(@Path("id") id: Int): PokemonEvolutionChainResponse
+
     @GET("type")
     suspend fun fetchPokemonTypes(): PokemonListBaseResponse<PokemonGenericResponse>
 }

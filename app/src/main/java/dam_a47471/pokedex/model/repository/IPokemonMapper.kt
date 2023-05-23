@@ -46,4 +46,8 @@ interface IPokemonMapper {
     fun toPokemonDetail(detailsEntity: PokemonDetailsEntity): PokemonDetail
 
     fun toPokemonStats(statsEntity: PokemonStatsEntity): PokemonStats
+
+    fun toEvolution(evolutionEntity: PokemonEvolutionEntity, pokemon: Pokemon): PokemonEvolution
+
+    fun toEvolutionEntity(evolution: PokemonEvolution): PokemonEvolutionEntity
 }

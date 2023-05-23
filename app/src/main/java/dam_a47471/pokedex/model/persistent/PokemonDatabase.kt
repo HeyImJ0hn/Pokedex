@@ -9,7 +9,7 @@ import dam_a47471.pokedex.model.*
 
 @Database(
     entities = [PokemonEntity::class, RegionEntity::class, TypeEntity::class,
-        PokemonTypesCrossRef::class, PokemonDetailsEntity::class, PokemonStatsEntity::class], version = 1, exportSchema = false
+        PokemonTypesCrossRef::class, PokemonDetailsEntity::class, PokemonStatsEntity::class, PokemonEvolutionEntity::class], version = 1, exportSchema = false
 )
 abstract class PokemonDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDao
@@ -17,6 +17,7 @@ abstract class PokemonDatabase : RoomDatabase() {
     abstract fun typeDao(): TypeDao
     abstract fun detailDao(): DetailDao
     abstract fun statsDao(): StatsDao
+    abstract fun evoDao(): EvolutionDao
 
     companion object {
         // For Singleton instantiation

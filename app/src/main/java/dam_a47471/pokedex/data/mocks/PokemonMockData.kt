@@ -160,8 +160,9 @@ object PokemonMockData {
             regions[0], listOf(pokemonTypeMock[16], pokemonTypeMock[15])
         ),
     )
-    var pokemonDetail = pokemons.map {
-        PokemonDetail(0,
+    /*var pokemonDetail = pokemons.map {
+        PokemonDetail(
+            0,
             pokemonDetailDescription,
             (Random.nextDouble(20.0, 50.0) * 100.0).roundToInt() / 100.0f,
             (Random.nextDouble(0.20, 2.0) * 100.0).roundToInt() / 100.0f,
@@ -171,7 +172,7 @@ object PokemonMockData {
                     1, pokemons.random(), false,
                     0, "", 0, ""
                 )
-            }.take(Random.nextInt(1, 3)).toList()
+            }.take(Random.nextInt(1, 3)).toList(), ""
         )
-    }
+    }*/
 }

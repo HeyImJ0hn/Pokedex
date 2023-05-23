@@ -6,6 +6,7 @@ data class PokemonDetail(
     var weight:Float?,
     var height: Float?,
     var ability: String?,
-    var evolution: List<PokemonEvolution>?
+    var category: String?,
+    var evolutions: List<PokemonEvolution>?
 )
 

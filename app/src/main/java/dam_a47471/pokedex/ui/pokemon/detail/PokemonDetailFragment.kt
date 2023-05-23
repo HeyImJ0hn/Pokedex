@@ -66,7 +66,7 @@ class PokemonDetailFragment : Fragment() {
             binding.typeListView.addItemDecoration(
                 EqualSpacingItemDecoration(30, EqualSpacingItemDecoration.HORIZONTAL)
             );
-            binding.evolutionListView.adapter = EvolutionAdapter(detail.evolution!!, view.context)
+            binding.evolutionListView.adapter = EvolutionAdapter(detail.evolutions!!, view.context)
             binding.evolutionListView.addItemDecoration(
                 EqualSpacingItemDecoration(30, EqualSpacingItemDecoration.VERTICAL)
             );

@@ -1,6 +1,10 @@
 package dam_a47471.pokedex.model
 
 import androidx.room.*
+import dam_a47471.pokedex.data.Pokemon
+import dam_a47471.pokedex.data.PokemonDetail
+import dam_a47471.pokedex.data.PokemonEvolution
+import dam_a47471.pokedex.data.PokemonStats
 
 @Entity(
     tableName = "pokemon",
@@ -86,6 +90,10 @@ data class PokemonDetailsEntity(
     var height: Float,
     @ColumnInfo(name = "ability_name")
     var ability: String,
+    @ColumnInfo(name = "category")
+    var category: String,
+    @ColumnInfo(name = "description")
+    val description: String,
 )
 
 @Entity(tableName = "pokemon_stats")
@@ -119,4 +127,21 @@ data class PokemonWithDetailsAndStats(
         entityColumn = "stats_id"
     )
     val stats: PokemonStatsEntity
+)
+
+@Entity(tableName = "pokemon_evolution")
+data class PokemonEvolutionEntity(
+    @ColumnInfo(name = "evolution_id")
+    var id: Int,
+    @PrimaryKey
+    @ColumnInfo(name = "pokemon_id")
+    var pkId: Int,
+    @ColumnInfo(name = "min_level")
+    var minLevel: Int,
+    @ColumnInfo(name = "item")
+    var item: String,
+    @ColumnInfo(name = "min_happiness")
+    var minHappiness: Int,
+    @ColumnInfo(name = "time")
+    var time: String
 )

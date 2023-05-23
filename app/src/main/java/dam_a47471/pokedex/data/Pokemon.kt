@@ -5,5 +5,5 @@ data class Pokemon(
     var name: String,
     var imageUrl: String,
     var region: PokemonRegion?,
-    var types: List<PokemonType>
+    var types: List<PokemonType>,
 ) : java.io.Serializable
